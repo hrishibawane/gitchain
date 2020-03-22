@@ -174,7 +174,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
       lineNumber: 15
     },
     __self: undefined
-  }, "New Project"))));
+  }, "New Project")), __jsx(_routes__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    route: "/users",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: undefined
+  }, __jsx("a", {
+    className: "item",
+    style: {
+      fontSize: "20px",
+      color: "white"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: undefined
+  }, "Users"))));
 });
 
 /***/ }),
@@ -380,9 +398,6 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __self: this
         }, __jsx("a", {
-          style: {
-            color: "teal"
-          },
           __source: {
             fileName: _jsxFileName,
             lineNumber: 58
@@ -636,7 +651,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 const routes = __webpack_require__(/*! next-routes */ "next-routes")();
 
-routes.add("/projects/:id", "/projects/index").add("/projects/:pid/:fid", "/projects/show/index");
+routes.add("/projects/:id", "/projects/index").add("/projects/:pid/:fid", "/projects/show/index").add("/users/:index", "/users/display/index");
 module.exports = routes;
 
 /***/ }),

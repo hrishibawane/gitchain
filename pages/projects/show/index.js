@@ -6,7 +6,7 @@ import ipfs from "../../../ethereum/ipfs";
 import { Container, Form, Input, Button } from "semantic-ui-react";
 import { Router, Link } from "../../../routes";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia, prism, xonokai } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 
 class ShowFile extends Component {
   state = {

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import web3 from \"./web3\";\nimport Blockhub from \"./build/Projhub.json\";\nvar instance = new web3.eth.Contract(JSON.parse(Blockhub[\"interface\"]), \"0x91D9E016B8F4C4cD5c86a5AD2A9CCDf44Ba204E0\");\nexport default instance;","map":null,"metadata":{},"sourceType":"module"}

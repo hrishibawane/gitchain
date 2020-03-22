@@ -174,7 +174,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
       lineNumber: 15
     },
     __self: undefined
-  }, "New Project"))));
+  }, "New Project")), __jsx(_routes__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    route: "/users",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: undefined
+  }, __jsx("a", {
+    className: "item",
+    style: {
+      fontSize: "20px",
+      color: "white"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: undefined
+  }, "Users"))));
 });
 
 /***/ }),
@@ -328,13 +346,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_syntax_highlighter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-syntax-highlighter */ "react-syntax-highlighter");
 /* harmony import */ var react_syntax_highlighter__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_syntax_highlighter__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_syntax_highlighter_dist_esm_styles_prism__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-syntax-highlighter/dist/esm/styles/prism */ "react-syntax-highlighter/dist/esm/styles/prism");
-/* harmony import */ var react_syntax_highlighter_dist_esm_styles_prism__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_syntax_highlighter_dist_esm_styles_prism__WEBPACK_IMPORTED_MODULE_8__);
 var _jsxFileName = "/home/hrishib/Desktop/gitchain/pages/projects/show/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -473,7 +488,7 @@ class ShowFile extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 const routes = __webpack_require__(/*! next-routes */ "next-routes")();
 
-routes.add("/projects/:id", "/projects/index").add("/projects/:pid/:fid", "/projects/show/index");
+routes.add("/projects/:id", "/projects/index").add("/projects/:pid/:fid", "/projects/show/index").add("/users/:index", "/users/display/index");
 module.exports = routes;
 
 /***/ }),
@@ -542,17 +557,6 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-syntax-highlighter");
-
-/***/ }),
-
-/***/ "react-syntax-highlighter/dist/esm/styles/prism":
-/*!*****************************************************************!*\
-  !*** external "react-syntax-highlighter/dist/esm/styles/prism" ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-syntax-highlighter/dist/esm/styles/prism");
 
 /***/ }),
 

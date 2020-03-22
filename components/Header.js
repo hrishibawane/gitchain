@@ -16,6 +16,11 @@ export default () => {
             New Project
           </a>
         </Link>
+        <Link route="/users">
+          <a className="item" style={{fontSize:"20px", color:"white"}}>
+            Users
+          </a>        
+        </Link>
       </Menu.Menu>
     </Menu>
   );

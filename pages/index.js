@@ -55,7 +55,7 @@ class ProjIndex extends Component {
           <List.Content>
             <List.Header style={{marginBottom:"10px", fontSize:"18px"}}>
               <Link route={`/projects/${project[0]}`}>
-                <a style={{color:"teal"}}>{project[1]}</a>
+                <a>{project[1]}</a>
               </Link>
             </List.Header>
             <List.Description>

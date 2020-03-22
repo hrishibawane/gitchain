@@ -56,7 +56,7 @@ class ShowProject extends Component {
           }}
         >
           <List.Content>
-            <List.Header style={{ marginBottom: "10px", fontSize: "18px" }}>
+            <List.Header style={{fontSize: "16px" }}>
               <Link route={`/projects/${projId}/${index}`} params={{projName: this.state.projName}}>
                 <a>{file}</a>
               </Link>
@@ -75,7 +75,7 @@ class ShowProject extends Component {
           <h3 style={{color:"grey"}}>{this.state.projName} /</h3>
           <hr/>
           <List items={this.state.files} />
-          <br/>
+          <hr/>
           <div style={{padding:"10px", border:"1px solid", borderColor:"lightgrey"}}>
             <h4 style={{color:"grey"}}>Description</h4>
             <p style={{fontSize:"15px"}}>{this.state.projDescription}</p>

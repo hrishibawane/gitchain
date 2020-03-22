@@ -103,7 +103,7 @@ class NewProject extends Component {
     for (var i = 0; i < fileCount; i++) {
       let row = (
         <Form.Field key={i}>
-          <label style={{ fontSize: "15px" }}>Upload File {i}</label>
+          <label style={{ fontSize: "15px" }}>Upload File {i+1}</label>
           <Form.Input
             style={{ fontSize: "15px" }}
             type="file"
@@ -120,7 +120,7 @@ class NewProject extends Component {
   render() {
     return (
       <Layout>
-        <Container>
+        <Container style={{padding:"10px"}}>
           <h3>Create Project</h3>
           <hr />
           <br />
@@ -169,6 +169,7 @@ class NewProject extends Component {
               fluid
             />
           </Form>
+          <br/><br/>
         </Container>
       </Layout>
     );

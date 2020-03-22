@@ -1,0 +1,1 @@
+{"ast":null,"code":"var routes = require(\"next-routes\")();\n\nroutes.add(\"/projects/:id\", \"/projects/index\").add(\"/projects/:pid/:fid\", \"/projects/show/index\").add(\"/users/:index\", \"/users/display/index\");\nmodule.exports = routes;","map":null,"metadata":{},"sourceType":"script"}
