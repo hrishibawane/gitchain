@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import projhub from "../../ethereum/projhub";
 import web3 from "../../ethereum/web3";
 import ipfs from "../../ethereum/ipfs";
-import { Container, Form, Input, Button, Icon } from "semantic-ui-react";
+import { Container, Form, Input, Button, Icon, List } from "semantic-ui-react";
 import { Router, Link } from "../../routes";
 import Dropzone from "react-dropzone";
 
@@ -174,6 +174,7 @@ class NewProject extends Component {
             {this.state.fileInputs} */}
             <Form.Field>
               <label style={{ fontSize: "15px" }}>Project Files</label>
+              <List divided items={this.state.fileNames} style={{border:"1px solid", borderColor:"lightgrey", padding:"10px"}}/>
               <Dropzone
                 onDrop={acceptedFiles => this.getDroppedFiles(acceptedFiles)}
               >
@@ -181,7 +182,7 @@ class NewProject extends Component {
                   <section>
                     <div
                       {...getRootProps()}
-                      style={{
+                      style={{ 
                         border: "1px solid",
                         borderColor: "lightgrey",
                         borderRadius: "4px",
@@ -191,7 +192,7 @@ class NewProject extends Component {
                         alignItems: "center"
                       }}
                     >
-                      <input {...getInputProps()} />
+                      <input {...getInputProps()}/>
                       <Icon name="folder open outline" size="big"/>
                       <p style={{fontSize:"15px"}}>Drag and drop files here or click to select files</p>
                     </div>

@@ -1,8 +1,9 @@
 const { createServer } = require("http");
 const next = require("next");
-const port = process.env.PORT || 8080;
+const port = process.env.PORT=='null' ? 3000 : process.env.PORT;
 
-console.log(process.env.NODE_ENV);
+// delete process.env.PORT;
+console.log(process.env.PORT);
 
 const app = next({
     dev: process.env.NODE_ENV !== 'production',
