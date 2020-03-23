@@ -2,6 +2,7 @@ const { createServer } = require("http");
 const next = require("next");
 const port = process.env.PORT || 8080;
 
+console.log(process.env.NODE_ENV);
 
 const app = next({
     dev: process.env.NODE_ENV !== 'production',

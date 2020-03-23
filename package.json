@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "node server.js",
+    "start": "export NODE_ENV=production && export PORT=443 && node server.js",
     "export": "next export"
   },
   "author": "Hrishikesh Bawane",
