@@ -15,7 +15,8 @@ class ProjIndex extends Component {
     isUser: false,
     name: "",
     email: "",
-    items: []
+    items: [],
+    loading: false
   };
 
   async componentDidMount() {
@@ -74,7 +75,7 @@ class ProjIndex extends Component {
     const name = this.state.name;
     const email = this.state.email;
     const acc = this.state.account;
-    this.setState({ name: "", email: "" });
+    this.setState({ name: "", email: "", loading: true });
     try {
       await projhub.methods.createUser(name, email).send({ from: acc });
 
@@ -82,6 +83,8 @@ class ProjIndex extends Component {
     } catch (err) {
       console.log(err.message);
     }
+
+    this.setState({ loading: false });
   };
 
   render() {
@@ -127,6 +130,7 @@ class ProjIndex extends Component {
                   />
                 </Form.Field>
                 <Button
+                  loading={this.state.loading}
                   disabled={this.state.isUser}
                   fluid
                   color="teal"

@@ -1,13 +1,13 @@
 {
-  "name": "github",
+  "name": "gitchain",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "export NODE_ENV=production && export PORT=443 && node server.js",
+    "start": "node server.js",
     "export": "next export"
   },
   "author": "Hrishikesh Bawane",
@@ -23,6 +23,7 @@
     "now": "^17.0.4",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-dropzone": "^10.2.1",
     "react-syntax-highlighter": "^12.2.1",
     "semantic-ui-react": "^0.88.2",
     "solc": "^0.4.26",

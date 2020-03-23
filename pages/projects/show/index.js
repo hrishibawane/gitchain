@@ -59,7 +59,7 @@ class ShowFile extends Component {
       <Layout>
         <Container style={{ padding: "10px" }}>
           <h3 style={{ color: "grey" }}>
-            {this.state.projName} / {this.state.fileName}
+            {this.state.projName}{this.state.fileName}
           </h3>
           <hr />
           <div

@@ -50,23 +50,34 @@ class DisplayUser extends Component {
   renderProjcards = () => {
     const projCards = this.state.projects.map((proj, index) => {
       return {
+        key: index,
         header: (
-          <Link route={`/projects/${proj[0]}`}>
-            <a><h4>{proj[1]}</h4></a>
-          </Link>
+          <div>
+            <Link route={`/projects/${proj[0]}`}>
+              <a>
+                <h4>{proj[1]}</h4>
+              </a>
+            </Link>
+          </div>
         ),
         description: (
-          <p
-            style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis"
-            }}
-          >
-            {proj[3]}
-          </p>
+          <div>
+            <p
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis"
+              }}
+            >
+              {proj[3]}
+            </p>
+          </div>
         ),
-        extra: <p>{proj[2]}</p>
+        extra: (
+          <div>
+            <p>{proj[2]}</p>
+          </div>
+        )
       };
     });
     this.setState({ projCards: projCards });

@@ -3,8 +3,9 @@ import Layout from "../../components/Layout";
 import projhub from "../../ethereum/projhub";
 import web3 from "../../ethereum/web3";
 import ipfs from "../../ethereum/ipfs";
-import { Container, Form, Input, Button } from "semantic-ui-react";
+import { Container, Form, Input, Button, Icon } from "semantic-ui-react";
 import { Router, Link } from "../../routes";
+import Dropzone from "react-dropzone";
 
 class NewProject extends Component {
   state = {
@@ -81,11 +82,21 @@ class NewProject extends Component {
 
     const file = event.target.files[0];
     this.setState({ file1: URL.createObjectURL(file) });
-    // console.log(file);
+    console.log(file);
 
     let reader = new window.FileReader();
     reader.readAsArrayBuffer(file);
     reader.onloadend = () => this.convertToBuffer(reader, file.name);
+  };
+
+  getDroppedFiles = acceptedFiles => {
+    for (var i = 0; i < acceptedFiles.length; i++) {
+      console.log(acceptedFiles[i]);
+      let file = acceptedFiles[i];
+      let reader = new window.FileReader();
+      reader.readAsArrayBuffer(file);
+      reader.onloadend = () => this.convertToBuffer(reader, file.path);
+    }
   };
 
   convertToBuffer = async (reader, fname) => {
@@ -103,7 +114,7 @@ class NewProject extends Component {
     for (var i = 0; i < fileCount; i++) {
       let row = (
         <Form.Field key={i}>
-          <label style={{ fontSize: "15px" }}>Upload File {i+1}</label>
+          <label style={{ fontSize: "15px" }}>Upload File {i + 1}</label>
           <Form.Input
             style={{ fontSize: "15px" }}
             type="file"
@@ -115,12 +126,12 @@ class NewProject extends Component {
     }
 
     this.setState({ fileCount: fileCount, fileInputs: fileInputs });
-  }
+  };
 
   render() {
     return (
       <Layout>
-        <Container style={{padding:"10px"}}>
+        <Container style={{ padding: "10px" }}>
           <h3>Create Project</h3>
           <hr />
           <br />
@@ -150,7 +161,7 @@ class NewProject extends Component {
               />
             </Form.Field>
             {/* <input type="file" webkitdirectory mozdirectory directory /> */}
-            <Form.Field>
+            {/* <Form.Field>
               <label style={{ fontSize: "15px" }}>No. of Files</label>
               <Form.Input
                 fluid
@@ -160,7 +171,34 @@ class NewProject extends Component {
                 onChange={event => this.renderFileInputs(event)}
               />
             </Form.Field>
-            {this.state.fileInputs}
+            {this.state.fileInputs} */}
+            <Form.Field>
+              <label style={{ fontSize: "15px" }}>Project Files</label>
+              <Dropzone
+                onDrop={acceptedFiles => this.getDroppedFiles(acceptedFiles)}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <section>
+                    <div
+                      {...getRootProps()}
+                      style={{
+                        border: "1px solid",
+                        borderColor: "lightgrey",
+                        borderRadius: "4px",
+                        height: "300px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}
+                    >
+                      <input {...getInputProps()} />
+                      <Icon name="folder open outline" size="big"/>
+                      <p style={{fontSize:"15px"}}>Drag and drop files here or click to select files</p>
+                    </div>
+                  </section>
+                )}
+              </Dropzone>
+            </Form.Field>
             <Button
               loading={this.state.loading}
               content="Create Project"
@@ -169,7 +207,8 @@ class NewProject extends Component {
               fluid
             />
           </Form>
-          <br/><br/>
+          <br />
+          <br />
         </Container>
       </Layout>
     );
@@ -178,8 +217,8 @@ class NewProject extends Component {
 
 export default NewProject;
 
-
-{/* <Form.Field>
+{
+  /* <Form.Field>
               <label style={{ fontSize: "15px" }}>Upload File 1</label>
               <Form.Input
                 style={{ fontSize: "15px" }}
@@ -194,4 +233,5 @@ export default NewProject;
                 type="file"
                 onChange={event => this.captureFile(event)}
               />
-            </Form.Field> */}
+            </Form.Field> */
+}
