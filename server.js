@@ -4,7 +4,8 @@ const port = process.env.PORT || 8080;
 
 
 const app = next({
-    dev: process.env.NODE_ENV === 'production'
+    dev: process.env.NODE_ENV !== 'production',
+    start: process.env.NODE_ENV === 'production'
 });
 
 const routes = require("./routes");
