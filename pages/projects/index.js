@@ -18,15 +18,16 @@ class ShowProject extends Component {
 
   static getInitialProps(props) {
     return {
+      userAdd: props.query.address,
       projId: props.query.id
     };
   }
 
   async componentDidMount() {
     const projId = this.props.projId;
-    const accounts = await web3.eth.getAccounts();
+    const account = this.props.userAdd;
     const projDetails = await projhub.methods
-      .getProjectDetails(accounts[0], projId)
+      .getProjectDetails(account, projId)
       .call();
 
     this.setState({

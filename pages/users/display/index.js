@@ -49,11 +49,12 @@ class DisplayUser extends Component {
 
   renderProjcards = () => {
     const projCards = this.state.projects.map((proj, index) => {
+      const acc = this.state.userAddress;
       return {
         key: index,
         header: (
           <div>
-            <Link route={`/projects/${proj[0]}`}>
+            <Link route={`/projects/${acc}/${proj[0]}`}>
               <a>
                 <h4>{proj[1]}</h4>
               </a>

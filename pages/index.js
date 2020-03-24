@@ -51,11 +51,12 @@ class ProjIndex extends Component {
     // console.log(projects[0][0], projects[0][1]);
 
     const items = projects.map((project, index) => {
+      const acc = this.state.account;
       return (
         <List.Item key={index} style={{padding:"10px", margin:"10px", border:"1px solid", borderColor:"grey"}}>
           <List.Content>
             <List.Header style={{marginBottom:"10px", fontSize:"18px"}}>
-              <Link route={`/projects/${project[0]}`}>
+              <Link route={`/projects/${acc}/${project[0]}`}>
                 <a>{project[1]}</a>
               </Link>
             </List.Header>
