@@ -11,12 +11,12 @@ export default () => {
         </a>
       </Link>
       <Menu.Menu position="right">
-        <Link route="/new">
+        <Link route="/new/">
           <a className="item" style={{fontSize:"20px", color:"white"}}>
             New Project
           </a>
         </Link>
-        <Link route="/users">
+        <Link route="/users/">
           <a className="item" style={{fontSize:"20px", color:"white"}}>
             Users
           </a>        

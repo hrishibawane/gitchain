@@ -47,6 +47,7 @@ class ShowProject extends Component {
     const files = this.state.projFileNames.map((file, index) => {
       let hash = this.state.projFileHashes[index];
       let projId = this.state.projId;
+      let userAdd = this.props.userAdd;
       return (
         <List.Item
           key={index}
@@ -58,7 +59,7 @@ class ShowProject extends Component {
         >
           <List.Content>
             <List.Header style={{fontSize: "16px" }}>
-              <Link route={`/projects/${projId}/${index}`} params={{projName: this.state.projName}}>
+              <Link route={`/projects/${userAdd}/${projId}/${index}`} params={{projName: this.state.projName}}>
                 <a>{file}</a>
               </Link>
             </List.Header>

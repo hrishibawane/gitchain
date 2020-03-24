@@ -14,7 +14,11 @@ class DisplayUser extends Component {
     userEmail: "",
     userProjCount: 0,
     projects: [],
-    projCards: []
+    projCards: [],
+    loading: false,
+    currUserAdd: "",
+    currUserId: "",
+    isFollower: true
   };
 
   static async getInitialProps(props) {
@@ -26,6 +30,13 @@ class DisplayUser extends Component {
   async componentDidMount() {
     const userIndex = this.props.userIndex;
     const userDetails = await projhub.methods.users(userIndex).call();
+    let currUserAdd = await web3.eth.getAccounts();
+    currUserAdd = currUserAdd[0];
+    let currUserId = await projhub.methods.getUserDetails(currUserAdd).call();
+    currUserId = currUserId[0];
+    let isFollower = await projhub.methods.isFollower(currUserId, userDetails[1]).call();
+    isFollower = isFollower || (currUserId==userIndex);
+    console.log(isFollower);
 
     let projects = [];
     for (let i = 0; i < userDetails[4]; i++) {
@@ -41,10 +52,30 @@ class DisplayUser extends Component {
       userName: userDetails[2],
       userEmail: userDetails[3],
       userProjCount: userDetails[4],
-      projects: projects
+      projects: projects,
+      currUserAdd: currUserAdd,
+      currUserId: currUserId,
+      isFollower: isFollower
     });
     console.log(projects);
     this.renderProjcards();
+  }
+
+  onFollow = async () => {
+    this.setState({ loading: true });
+    const userAcc = this.state.userAddress;
+    const currUserAdd = this.state.currUserAdd;
+    const currUserId = this.state.currUserId;
+    console.log(currUserAdd, currUserId);
+    try {
+      await projhub.methods
+        .followUser(currUserId, userAcc)
+        .send({ from: currUserAdd });
+    }
+    catch (err) {
+      console.log(err.msg);
+    }
+    this.setState({ loading: false });
   }
 
   renderProjcards = () => {
@@ -106,7 +137,7 @@ class DisplayUser extends Component {
                 <p style={{ fontSize: "15px" }}>
                   Email: {this.state.userEmail}
                 </p>
-                <Button color="teal" content="Follow" />
+                <Button disabled={this.state.isFollower} loading={this.state.loading} color="teal" content="Follow" onClick={() => this.onFollow()}/>
               </div>
             </Grid.Column>
             <Grid.Column

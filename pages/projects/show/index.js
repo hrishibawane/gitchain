@@ -22,6 +22,7 @@ class ShowFile extends Component {
 
   static async getInitialProps(props) {
     return {
+      userAdd: props.query.address,
       projIndex: props.query.pid,
       fileIndex: props.query.fid
     };
@@ -29,18 +30,21 @@ class ShowFile extends Component {
 
   async componentDidMount() {
     console.log(this.props.projIndex);
+    const userAdd = this.props.userAdd;
     const projId = this.props.projIndex;
     const fileIndex = this.props.fileIndex;
     const accounts = await web3.eth.getAccounts();
     const projDetails = await projhub.methods
-      .getProjectDetails(accounts[0], projId)
+      .getProjectDetails(userAdd, projId)
       .call();
     const projName = projDetails[1];
     const fileHash = projDetails[4][fileIndex];
     const fileName = projDetails[5][fileIndex];
+    
+    console.log(fileName);
+
     const language = fileName.split(".")[1];
     const data = await ipfs.files.get(fileHash);
-    console.log(data[0].content.toString());
 
     this.setState({
       projId: projId,
@@ -59,7 +63,7 @@ class ShowFile extends Component {
       <Layout>
         <Container style={{ padding: "10px" }}>
           <h3 style={{ color: "grey" }}>
-            {this.state.projName}{this.state.fileName}
+            {this.state.projName}/{this.state.fileName}
           </h3>
           <hr />
           <div

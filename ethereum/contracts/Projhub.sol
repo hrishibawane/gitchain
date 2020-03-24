@@ -19,6 +19,7 @@ contract Projhub {
         string email;
         mapping(uint256 => Proj) projects;
         uint256 projCount;
+        mapping(address => bool) followers;
     }
 
     address public manager;
@@ -68,6 +69,20 @@ contract Projhub {
 
         currUser.projects[projCount] = newProj;
         currUser.projCount = projCount + 1;
+    }
+
+    function followUser(uint256 senderId, address receiver) public {
+        User storage currUser = users[senderId];
+        currUser.followers[receiver] = true;
+    }
+
+    function isFollower(uint256 currUserId, address otherUser)
+        public
+        view
+        returns (bool)
+    {
+        User storage currUser = users[currUserId];
+        return currUser.followers[otherUser];
     }
 
     function getUserDetails(address uadd)
