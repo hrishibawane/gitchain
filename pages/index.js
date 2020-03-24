@@ -16,26 +16,65 @@ class ProjIndex extends Component {
     name: "",
     email: "",
     items: [],
-    loading: false
+    loading: false,
+    follows: [],
+    currUser: "",
+    userCount: 0,
+    followList: []
   };
 
   async componentDidMount() {
     const accs = await web3.eth.getAccounts();
     const isUser = await projhub.methods.isUser(accs[0]).call();
+    const userCount = await projhub.methods.userCount().call();
 
     console.log(isUser);
     this.setState({ account: accs[0], isUser: isUser });
 
     if (isUser) {
       const userDetails = await projhub.methods.getUserDetails(accs[0]).call();
+
+      let follows = []
+      for (let i=0; i<userCount; i++) {
+        const user = await projhub.methods.users(i).call();
+        const isFollower = await projhub.methods.isFollower(userDetails[0], user.owner).call();
+        if (isFollower) {
+          follows.push(user);
+        }
+      }
+
       this.setState({
         userid: userDetails[0],
         username: userDetails[2],
         email: userDetails[3],
-        projCount: userDetails[4]
+        projCount: userDetails[4],
+        follows: follows,
+        userCount: userCount
       });
       this.renderProjects();
+      this.renderFollowers();
     }
+  }
+
+  renderFollowers = async () => {
+    console.log(this.state.follows);
+    const followList = this.state.follows.map((user, index) => {
+      return (
+        <List.Item key={index} style={{padding:"5px", margin:"5px"}}>
+          <List.Content>
+            <List.Header>
+              <Link route={`/users/${index}`}>
+                <a>{user.name}</a>
+              </Link>
+            </List.Header>
+            <List.Description>
+              <p>Projects: {user.projCount}</p>
+            </List.Description>
+          </List.Content>
+        </List.Item>
+      );
+    });
+    this.setState({ followList: followList });
   }
 
   renderProjects = async () => {
@@ -92,20 +131,21 @@ class ProjIndex extends Component {
     return (
       <div>
         <Layout>
+          <div style={{margin:"10px", fontSize:"16px"}}>
+            Signed in as <strong>{this.state.username}</strong>
+          </div>
           <Grid style={{ margin: "10px" }}>
-            <Grid.Column width="4">
-              <h3>Followers</h3>
+            <Grid.Column width="4" style={{backgroundColor:"#f0f0f1"}}>
+              <h3 style={{marginLeft:"10px"}}>Followers</h3>
+              <List divided items={this.state.followList}/>
             </Grid.Column>
             <Grid.Column width="8">
               <h3 style={{marginLeft:"10px"}}>Projects</h3>
               <List items={this.state.items}/>
             </Grid.Column>
-            <Grid.Column
-              width="4"
-              style={{ border: "2px solid", borderColor: "grey" }}
-            >
+            <Grid.Column width="4" style={{backgroundColor:"#f0f0f1"}}>
               <h3>Signup</h3>
-              <Form>
+              <Form style={{ padding:"10px", border: "2px solid", borderColor: "grey" }}>
                 <Form.Field inline>
                   <label style={{ width: "15%" }}>Name:</label>
                   <Input

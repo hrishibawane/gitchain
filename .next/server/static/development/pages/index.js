@@ -346,7 +346,69 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       name: "",
       email: "",
       items: [],
-      loading: false
+      loading: false,
+      follows: [],
+      currUser: "",
+      userCount: 0,
+      followList: []
+    });
+
+    _defineProperty(this, "renderFollowers", async () => {
+      console.log(this.state.follows);
+      const followList = this.state.follows.map((user, index) => {
+        return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Item, {
+          key: index,
+          style: {
+            padding: "5px",
+            margin: "5px"
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 63
+          },
+          __self: this
+        }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Content, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 64
+          },
+          __self: this
+        }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Header, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 65
+          },
+          __self: this
+        }, __jsx(_routes__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+          route: `/users/${index}`,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 66
+          },
+          __self: this
+        }, __jsx("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 67
+          },
+          __self: this
+        }, user.name))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Description, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 70
+          },
+          __self: this
+        }, __jsx("p", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 71
+          },
+          __self: this
+        }, "Projects: ", user.projCount))));
+      });
+      this.setState({
+        followList: followList
+      });
     });
 
     _defineProperty(this, "renderProjects", async () => {
@@ -373,13 +435,13 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 56
+            lineNumber: 95
           },
           __self: this
         }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Content, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 57
+            lineNumber: 96
           },
           __self: this
         }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Header, {
@@ -389,26 +451,26 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 58
+            lineNumber: 97
           },
           __self: this
         }, __jsx(_routes__WEBPACK_IMPORTED_MODULE_5__["Link"], {
           route: `/projects/${acc}/${project[0]}`,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 59
+            lineNumber: 98
           },
           __self: this
         }, __jsx("a", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 60
+            lineNumber: 99
           },
           __self: this
         }, project[1]))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"].Description, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 63
+            lineNumber: 102
           },
           __self: this
         }, __jsx("p", {
@@ -417,7 +479,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 64
+            lineNumber: 103
           },
           __self: this
         }, project[2]), __jsx("p", {
@@ -429,7 +491,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 65
+            lineNumber: 104
           },
           __self: this
         }, project[3]))));
@@ -467,6 +529,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   async componentDidMount() {
     const accs = await _ethereum_web3__WEBPACK_IMPORTED_MODULE_3__["default"].eth.getAccounts();
     const isUser = await _ethereum_projhub__WEBPACK_IMPORTED_MODULE_2__["default"].methods.isUser(accs[0]).call();
+    const userCount = await _ethereum_projhub__WEBPACK_IMPORTED_MODULE_2__["default"].methods.userCount().call();
     console.log(isUser);
     this.setState({
       account: accs[0],
@@ -475,13 +538,27 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
     if (isUser) {
       const userDetails = await _ethereum_projhub__WEBPACK_IMPORTED_MODULE_2__["default"].methods.getUserDetails(accs[0]).call();
+      let follows = [];
+
+      for (let i = 0; i < userCount; i++) {
+        const user = await _ethereum_projhub__WEBPACK_IMPORTED_MODULE_2__["default"].methods.users(i).call();
+        const isFollower = await _ethereum_projhub__WEBPACK_IMPORTED_MODULE_2__["default"].methods.isFollower(userDetails[0], user.owner).call();
+
+        if (isFollower) {
+          follows.push(user);
+        }
+      }
+
       this.setState({
         userid: userDetails[0],
         username: userDetails[2],
         email: userDetails[3],
-        projCount: userDetails[4]
+        projCount: userDetails[4],
+        follows: follows,
+        userCount: userCount
       });
       this.renderProjects();
+      this.renderFollowers();
     }
   }
 
@@ -489,42 +566,48 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 132
       },
       __self: this
     }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 94
+        lineNumber: 133
       },
       __self: this
-    }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
+    }, __jsx("div", {
+      style: {
+        margin: "10px",
+        fontSize: "16px"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 134
+      },
+      __self: this
+    }, "Signed in as ", __jsx("strong", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 135
+      },
+      __self: this
+    }, this.state.username)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
       style: {
         margin: "10px"
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 95
+        lineNumber: 137
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
       width: "4",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 96
+      style: {
+        backgroundColor: "#f0f0f1"
       },
-      __self: this
-    }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 97
-      },
-      __self: this
-    }, "Followers")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
-      width: "8",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 138
       },
       __self: this
     }, __jsx("h3", {
@@ -533,44 +616,72 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 100
+        lineNumber: 139
+      },
+      __self: this
+    }, "Followers"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"], {
+      divided: true,
+      items: this.state.followList,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 140
+      },
+      __self: this
+    })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
+      width: "8",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 142
+      },
+      __self: this
+    }, __jsx("h3", {
+      style: {
+        marginLeft: "10px"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 143
       },
       __self: this
     }, "Projects"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"], {
       items: this.state.items,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 101
+        lineNumber: 144
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
       width: "4",
       style: {
-        border: "2px solid",
-        borderColor: "grey"
+        backgroundColor: "#f0f0f1"
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 146
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 107
+        lineNumber: 147
       },
       __self: this
     }, "Signup"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"], {
+      style: {
+        padding: "10px",
+        border: "2px solid",
+        borderColor: "grey"
+      },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 108
+        lineNumber: 148
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Field, {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 109
+        lineNumber: 149
       },
       __self: this
     }, __jsx("label", {
@@ -579,7 +690,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 110
+        lineNumber: 150
       },
       __self: this
     }, "Name:"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Input"], {
@@ -594,14 +705,14 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 111
+        lineNumber: 151
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Field, {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 121
+        lineNumber: 161
       },
       __self: this
     }, __jsx("label", {
@@ -610,7 +721,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 122
+        lineNumber: 162
       },
       __self: this
     }, "Email:"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Input"], {
@@ -625,7 +736,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 123
+        lineNumber: 163
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Button"], {
@@ -638,7 +749,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.createUser,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 133
+        lineNumber: 173
       },
       __self: this
     }))))));
