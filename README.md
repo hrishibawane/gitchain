@@ -10,7 +10,7 @@ Upload your Projects or important codes/files and store them permanently and fre
 These instructions will get you started with using **Gitchain** :
 
 1. Open Google Chrome or Firefox browser.
-2. Install Metamask. Refer [this](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) guide for Metamask installation. Congratulations! You are now connected to Ethereum Blockchain.
+2. Install Metamask. Refer [this](https://blog.wetrust.io/how-to-install-and-use-metamask-7210720ca047) guide for Metamask installation. Congratulations! You are now connected to Ethereum Blockchain.
 3. Select the Rinkeby Test Network instead of Main Ethereum Network.
 4. Now, we need some Ether in order to perform any transaction on the Application. For this, click in this [link](https://faucet.rinkeby.io/). Use either of the two methods to request ether in your Ethereum Account. To copy your Ethereum address, click the Metamask extension and click on the Account name.
 5. After pasting the required URL, select the last option i.e. 18.75 Ethers/3 days and your account will be funded!
