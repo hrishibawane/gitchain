@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Header from "./Header";
+import Footer from "./Footer";
 
 export default props => {
   return (
@@ -12,7 +13,15 @@ export default props => {
         />
       </Head>
       <Header />
+      <div 
+        style={{
+          position: "relative",
+          minHeight: "100vh"
+        }}
+      >
       {props.children}
+      </div>
+      <Footer />
     </div>
   );
 };
