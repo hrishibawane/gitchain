@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -633,6 +633,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       this.setState({
         loading: false
       });
+      _routes__WEBPACK_IMPORTED_MODULE_5__["Router"].pushRoute("/");
     });
   }
 
@@ -676,13 +677,13 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 132
+        lineNumber: 133
       },
       __self: this
     }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 133
+        lineNumber: 134
       },
       __self: this
     }, __jsx("div", {
@@ -692,13 +693,13 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 134
+        lineNumber: 135
       },
       __self: this
     }, "Signed in as ", __jsx("strong", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 136
       },
       __self: this
     }, this.state.username)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
@@ -707,7 +708,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 137
+        lineNumber: 138
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
@@ -717,7 +718,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 138
+        lineNumber: 139
       },
       __self: this
     }, __jsx("h3", {
@@ -726,22 +727,22 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 139
+        lineNumber: 140
       },
       __self: this
-    }, "Followers"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"], {
+    }, "People you follow"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"], {
       divided: true,
       items: this.state.followList,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 140
+        lineNumber: 141
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
       width: "8",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 142
+        lineNumber: 143
       },
       __self: this
     }, __jsx("h3", {
@@ -750,14 +751,14 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 143
+        lineNumber: 144
       },
       __self: this
     }, "Projects"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["List"], {
       items: this.state.items,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 144
+        lineNumber: 145
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Grid"].Column, {
@@ -767,13 +768,13 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 146
+        lineNumber: 147
       },
       __self: this
     }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 147
+        lineNumber: 148
       },
       __self: this
     }, "Signup"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"], {
@@ -784,14 +785,14 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 148
+        lineNumber: 149
       },
       __self: this
     }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Field, {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 149
+        lineNumber: 150
       },
       __self: this
     }, __jsx("label", {
@@ -800,7 +801,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 150
+        lineNumber: 151
       },
       __self: this
     }, "Name:"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Input"], {
@@ -815,14 +816,14 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 151
+        lineNumber: 152
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Field, {
       inline: true,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 161
+        lineNumber: 162
       },
       __self: this
     }, __jsx("label", {
@@ -831,7 +832,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 162
+        lineNumber: 163
       },
       __self: this
     }, "Email:"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Input"], {
@@ -846,7 +847,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       }),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 163
+        lineNumber: 164
       },
       __self: this
     })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Button"], {
@@ -859,7 +860,7 @@ class ProjIndex extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       onClick: this.createUser,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 173
+        lineNumber: 174
       },
       __self: this
     }))))));
@@ -885,7 +886,7 @@ module.exports = routes;
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

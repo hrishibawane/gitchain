@@ -125,6 +125,7 @@ class ProjIndex extends Component {
     }
 
     this.setState({ loading: false });
+    Router.pushRoute("/");
   };
 
   render() {
@@ -136,7 +137,7 @@ class ProjIndex extends Component {
           </div>
           <Grid style={{ margin: "10px" }}>
             <Grid.Column width="4" style={{backgroundColor:"#f0f0f1"}}>
-              <h3 style={{marginLeft:"10px"}}>Followers</h3>
+              <h3 style={{marginLeft:"10px"}}>People you follow</h3>
               <List divided items={this.state.followList}/>
             </Grid.Column>
             <Grid.Column width="8">

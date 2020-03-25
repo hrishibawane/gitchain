@@ -4,7 +4,7 @@ import projhub from "../../../ethereum/projhub";
 import web3 from "../../../ethereum/web3";
 import ipfs from "../../../ethereum/ipfs";
 import { Grid, Container, Card, Button } from "semantic-ui-react";
-import { Link } from "../../../routes";
+import { Router, Link } from "../../../routes";
 
 class DisplayUser extends Component {
   state = {
@@ -76,6 +76,7 @@ class DisplayUser extends Component {
       console.log(err.msg);
     }
     this.setState({ loading: false });
+    Router.pushRoute("/");
   }
 
   renderProjcards = () => {
